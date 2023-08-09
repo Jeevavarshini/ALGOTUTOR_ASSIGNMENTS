@@ -1,0 +1,55 @@
+public class RotateMatrix {
+
+    public static void main(String[] args) {
+        int[][] matrix = {
+            {1, 2, 3},
+            {4, 5, 6},
+            {7, 8, 9}
+        };
+
+        rotate(matrix);
+
+        System.out.println("Rotated Matrix:");
+        displayMatrix(matrix);
+    }
+
+    public static void rotate(int[][] matrix) {
+        transpose(matrix);
+        reverseRows(matrix);
+    }
+
+    public static void transpose(int[][] matrix) {
+        int n = matrix.length;
+
+        for (int i = 0; i < n; i++) {
+            for (int j = i + 1; j < n; j++) {
+                int temp = matrix[i][j];
+                matrix[i][j] = matrix[j][i];
+                matrix[j][i] = temp;
+            }
+        }
+    }
+
+    public static void reverseRows(int[][] matrix) {
+        int n = matrix.length;
+        int start = 0;
+        int end = n - 1;
+
+        while (start < end) {
+            int[] temp = matrix[start];
+            matrix[start] = matrix[end];
+            matrix[end] = temp;
+            start++;
+            end--;
+        }
+    }
+
+    public static void displayMatrix(int[][] matrix) {
+        for (int[] row : matrix) {
+            for (int num : row) {
+                System.out.print(num + " ");
+            }
+            System.out.println();
+        }
+    }
+}
